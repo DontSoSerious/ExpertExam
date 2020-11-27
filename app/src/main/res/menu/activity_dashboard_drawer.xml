@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <item android:title="Exam"
+        android:id="@+id/grp_exam">
+        <menu>
+            <item
+                android:id="@+id/nav_add_exam"
+                android:visible="false"
+                android:title="Add Exam" />
+            <item
+                android:id="@+id/nav_view_question"
+                android:icon="@drawable/ic_view_question_icon"
+                android:title="View All Question" />
+            <item
+                android:id="@+id/nav_view_history"
+                android:icon="@drawable/ic_history_icon"
+                android:title="View Result History" />
+        </menu>
+    </item>
+
+    <item android:title="Profile"
+        android:id="@+id/grp_profile">
+        <menu>
+            <item
+                android:id="@+id/nav_edit_profile"
+                android:icon="@drawable/ic_profile_icon"
+                android:title="Edit Profile" />
+            <item
+                android:id="@+id/nav_change_password"
+                android:icon="@drawable/ic_changepassword_icon"
+                android:title="Change Password" />
+            <item
+                android:id="@+id/nav_logout"
+                android:icon="@drawable/ic_logout_icon"
+                android:title="Logout" />
+        </menu>
+    </item>
+
+</menu>

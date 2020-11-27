@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingBottom="30dp"
+    android:paddingTop="10dp"
+    android:paddingLeft="10dp"
+    android:paddingRight="10dp">
+
+    <TextView
+        android:id="@+id/tv_result_question_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="25dp"
+        android:text="questiont text"
+        android:textColor="@color/black"/>
+
+
+    <TextView
+        android:id="@+id/tv_selected_answer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_below="@id/tv_result_question_text"
+        android:textSize="20dp"
+        android:text="Selected Answer: "
+        android:visibility="gone"
+        android:textColor="@color/black"/>
+
+    <TextView
+        android:id="@+id/tv_final_answer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:textSize="20dp"
+        android:text="Correct Answer: asdasd asdasd"
+        android:layout_below="@+id/tv_selected_answer"
+        android:textColor="@color/black"/>
+
+    <TextView
+        android:id="@+id/tv_status"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:layout_below="@id/tv_final_answer"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:text="Congratulation. You got it correct"
+        android:textColor="@color/correct_answer"/>
+</RelativeLayout>
