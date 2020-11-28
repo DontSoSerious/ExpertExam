@@ -89,7 +89,7 @@ public class Dashboard extends AppCompatActivity
         reff.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                questionBanks = FirebaseQuery.dataSnapShotToQuestionBankList(dataSnapshot);
+                questionBanks = FirebaseQuery.fetchQuestionBanks(dataSnapshot);
                 mAdapter.notifyDataSetChanged();
             }
 
@@ -232,7 +232,7 @@ public class Dashboard extends AppCompatActivity
                     reff.addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                            questionBanks = FirebaseQuery.dataSnapShotToQuestionBankList(dataSnapshot);
+                            questionBanks = FirebaseQuery.fetchQuestionBanks(dataSnapshot);
                             mAdapter.notifyDataSetChanged();
                         }
 
@@ -249,7 +249,7 @@ public class Dashboard extends AppCompatActivity
                     reff.addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                            questionBanks = FirebaseQuery.dataSnapShotToQuestionBankList(dataSnapshot);
+                            questionBanks = FirebaseQuery.fetchQuestionBanks(dataSnapshot);
                             mAdapter.notifyDataSetChanged();
                         }
 

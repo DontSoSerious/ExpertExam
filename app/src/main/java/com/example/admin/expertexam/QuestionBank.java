@@ -54,6 +54,7 @@ public class QuestionBank implements Serializable{
     public void removeQuestion(int index) {
         questions.remove(index);
     }
+
     public int getQuestionSize() {
         return this.questions.size();
     }

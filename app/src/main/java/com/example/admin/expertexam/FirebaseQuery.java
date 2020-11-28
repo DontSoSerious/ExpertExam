@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class FirebaseQuery {
-    public static List<QuestionBank> dataSnapShotToQuestionBankList(DataSnapshot dataSnapshot) {
+    public static List<QuestionBank> fetchQuestionBanks(DataSnapshot dataSnapshot) {
         List<QuestionBank> questionBanks = new ArrayList<>();
         dataSnapshot = dataSnapshot.child("question_bank");
         for (DataSnapshot ds : dataSnapshot.getChildren()) {

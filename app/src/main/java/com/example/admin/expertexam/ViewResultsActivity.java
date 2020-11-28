@@ -18,6 +18,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.Collections;
 import java.util.List;
 
 public class ViewResultsActivity extends AppCompatActivity {
@@ -33,6 +34,7 @@ public class ViewResultsActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 List<Result> results = FirebaseQuery.fetchResults(dataSnapshot);
+                Collections.reverse(results);
                 Log.e("ERROR", results.size() + "");
                 recyclerView = findViewById(R.id.results_recycler_view);
                 recyclerView.setLayoutManager(new LinearLayoutManager(ViewResultsActivity.this));

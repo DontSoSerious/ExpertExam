@@ -9,6 +9,7 @@
             <item
                 android:id="@+id/nav_add_exam"
                 android:visible="false"
+                android:icon="@drawable/ic_add"
                 android:title="Add Exam" />
             <item
                 android:id="@+id/nav_view_question"

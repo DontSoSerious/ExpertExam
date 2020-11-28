@@ -45,28 +45,34 @@ public class LoginActivity extends AppCompatActivity{
         mBtnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String email = mEtEmail.getText().toString().trim();
-                String password = mEtPassword.getText().toString();
-                mFirebaseAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            FirebaseUser account = mFirebaseAuth.getCurrentUser();
-                            if (account.isEmailVerified()) {
-                                Intent i = new Intent(getApplicationContext(), Dashboard.class);
-                                startActivity(i);
+                boolean check = true;
+                check = checkInput(mEtEmail) && check;
+                check = checkInput(mEtPassword) && check;
+                if (check) {
+                    String email = mEtEmail.getText().toString().trim();
+                    String password = mEtPassword.getText().toString();
+
+                    mFirebaseAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            if (task.isSuccessful()) {
+                                FirebaseUser account = mFirebaseAuth.getCurrentUser();
+                                if (account.isEmailVerified()) {
+                                    Intent i = new Intent(getApplicationContext(), Dashboard.class);
+                                    startActivity(i);
+                                }
+                                else {
+                                    account.sendEmailVerification();
+                                    Toast.makeText(LoginActivity.this, "Please verify your email", Toast.LENGTH_SHORT).show();
+                                    mFirebaseAuth.signOut();
+                                }
                             }
                             else {
-                                account.sendEmailVerification();
-                                Toast.makeText(LoginActivity.this, "Please verify your email", Toast.LENGTH_SHORT).show();
-                                mFirebaseAuth.signOut();
+                                Toast.makeText(LoginActivity.this, "Your email or password are invalid", Toast.LENGTH_SHORT).show();
                             }
                         }
-                        else {
-                            Toast.makeText(LoginActivity.this, "Your email or password are invalid", Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                });
+                    });
+                }
             }
         });
     }
@@ -93,12 +99,6 @@ public class LoginActivity extends AppCompatActivity{
         }
         else {
             editText.setError(null);
-        }
-        switch (editText.getId()) {
-            case R.id.et_email:
-                break;
-            case R.id.et_password:
-                break;
         }
         return check;
     }

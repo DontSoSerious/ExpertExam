@@ -55,16 +55,8 @@ public class Result implements Serializable{
         this.selectedOption = selectedOptions;
     }
 
-    public boolean isQuestionOptionsRandomize(int questionNumber) {
-        return randomizeOptions[questionNumber][0] == -1;
-    }
-
     public int getRandomizeOption(int questionNumber, int index) {
         return randomizeOptions[questionNumber][index];
-    }
-
-    public void setRandomizeOptions(int questionNumber, int[] shuffledOption) {
-        this.randomizeOptions[questionNumber] = shuffledOption;
     }
 
     public int getShuffleQuestion(int index) {
