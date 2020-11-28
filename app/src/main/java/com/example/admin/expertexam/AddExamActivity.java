@@ -65,7 +65,7 @@ public class AddExamActivity extends AppCompatActivity {
         btnSubmit = (Button) findViewById(R.id.btn_submit);
         btnNext = (Button) findViewById(R.id.btn_next);
         if (questionBank.getQuestionSize() > 0) {
-            getSupportActionBar().setTitle("Edit Question Bank");
+            getSupportActionBar().setTitle("Editing Exam");
             btnSubmit.setText("Update");
         }
 
@@ -154,9 +154,16 @@ public class AddExamActivity extends AppCompatActivity {
                 boolean check = beforeProceed();
                 if (!check)
                     return;
+                String message = "";
+                if (btnSubmit.getText().toString().equalsIgnoreCase("update")) {
+                    message = "Are you sure you want to update the exam questions?";
+                }
+                else {
+                    message = "Are you confirm you want to add these questions into database?";
+                }
                 AlertDialog alertDialog = new AlertDialog.Builder(AddExamActivity.this)
                         .setTitle("Confirmation Message")
-                        .setMessage("Are you confirm you want to add these questions into database?")
+                        .setMessage(message)
                         .setPositiveButton("Confirm", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
@@ -276,7 +283,12 @@ public class AddExamActivity extends AppCompatActivity {
             rb4.setChecked(false);
         }
         else {
-            btnNext.setText("Next");
+            if(currentIndex == questionBank.getQuestionSize() - 1) {
+                btnNext.setText("Add");
+            }
+            else {
+                btnNext.setText("Next");
+            }
             Question question = questionBank.getQuestion(currentIndex);
             etQuestionText.setText(question.getQuestionText());
             et1.setText(question.getOptionString(0));
