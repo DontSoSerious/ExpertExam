@@ -35,7 +35,6 @@ public class ViewResultsActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 List<Result> results = FirebaseQuery.fetchResults(dataSnapshot);
                 Collections.reverse(results);
-                Log.e("ERROR", results.size() + "");
                 recyclerView = findViewById(R.id.results_recycler_view);
                 recyclerView.setLayoutManager(new LinearLayoutManager(ViewResultsActivity.this));
                 mAdapter = new ResultsAdapter(results);

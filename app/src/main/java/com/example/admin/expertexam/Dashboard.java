@@ -151,7 +151,7 @@ public class Dashboard extends AppCompatActivity
                     public void onClick(View v) {
                         final String title = etTitle.getText().toString();
                         if (title.isEmpty()) {
-                            etTitle.setError("Question bank title cannot be empty");
+                            etTitle.setError("Exam title cannot be empty");
                         }
                         else {
                             reff.child("question_bank").orderByKey().equalTo(title).addValueEventListener(new ValueEventListener() {

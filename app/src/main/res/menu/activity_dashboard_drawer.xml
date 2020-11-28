@@ -14,7 +14,7 @@
             <item
                 android:id="@+id/nav_view_question"
                 android:icon="@drawable/ic_view_question_icon"
-                android:title="View All Question" />
+                android:title="View All Exams" />
             <item
                 android:id="@+id/nav_view_history"
                 android:icon="@drawable/ic_history_icon"
