@@ -40,8 +40,6 @@ public class StartUpActivity extends AppCompatActivity {
         ivMid.setAnimation(midAnim);
         tvBottom.setAnimation(bottomAnim);
 
-
-//        db = FirebaseDatabase.getInstance().
         fAuth = FirebaseAuth.getInstance();
 
         new Handler().postDelayed(new Runnable() {
