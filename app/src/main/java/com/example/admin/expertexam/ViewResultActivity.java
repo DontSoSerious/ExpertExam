@@ -30,7 +30,6 @@ public class ViewResultActivity extends AppCompatActivity {
         setContentView(R.layout.activity_view_result);
         ButterKnife.bind(this);
         result = (Result) getIntent().getSerializableExtra(EXTRA_SELECTED_RESULT);
-//        recyclerView = findViewById(R.id.result_recycler_view);
 
         linearLayoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(linearLayoutManager);

@@ -61,17 +61,4 @@ public class Question implements Serializable{
     public void setAnswer(int answer) {
         this.answer = answer;
     }
-
-    public int[] shuffleOptions() {
-        List<Integer> temp = new ArrayList<>();
-        for (int i = 0; i < 4; i++) {
-            temp.add(i);
-        }
-        Collections.shuffle(temp);
-        int[] shuffledOptions = new int[4];
-        for (int i = 0; i < 4; i++) {
-            shuffledOptions[i] = temp.get(i);
-        }
-        return shuffledOptions;
-    }
 }

@@ -66,8 +66,8 @@ public class ViewResultsActivity extends AppCompatActivity {
         @Override
         public void onBindViewHolder(@NonNull ResultsHolder resultsHolder, int i) {
             final Result selectedResult = results.get(i);
-            resultsHolder.tvScore.setText(selectedResult.getNumberOfCorrect() + "/" + selectedResult.getQuestionBank().getQuestionSize());
             resultsHolder.tvTitle.setText(selectedResult.getQuestionBank().getTitle());
+            resultsHolder.tvScore.setText(selectedResult.getNumberOfCorrect() + "/" + selectedResult.getQuestionBank().getQuestionSize());
 
             resultsHolder.relativeLayout.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -77,7 +77,6 @@ public class ViewResultsActivity extends AppCompatActivity {
                     startActivity(i);
                 }
             });
-
         }
 
         @Override

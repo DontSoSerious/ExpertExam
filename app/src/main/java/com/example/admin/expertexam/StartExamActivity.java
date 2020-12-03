@@ -12,7 +12,10 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
+import java.util.List;
 
 public class StartExamActivity extends AppCompatActivity {
 
@@ -26,8 +29,9 @@ public class StartExamActivity extends AppCompatActivity {
     private Button btnLeft;
     private Button btnRight;
     private int currentIndex;
-
+    private int[][] randomizdeOptions;
     private Result examResult;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,7 +41,11 @@ public class StartExamActivity extends AppCompatActivity {
         getSupportActionBar().setTitle(qb.getTitle());
 
         examResult = new Result(qb);
-
+        int qbSize = examResult.getQuestionBank().getQuestionSize();
+        randomizdeOptions = new int[qbSize][4];
+        for (int i = 0; i < qbSize; i++) {
+            randomizdeOptions[i] = shuffleOptionsIndex();
+        }
         currentIndex = 0;
 
         tvQuestionText = (TextView) findViewById(R.id.tv_question_text);
@@ -112,16 +120,16 @@ public class StartExamActivity extends AppCompatActivity {
         else {
             int selected = examResult.getSelectedOption(currentIndex);
             for (int i = 0; i < 4; i++) {
-                if (selected == examResult.getRandomizeOption(currentIndex, 0)) {
+                if (selected == randomizdeOptions[currentIndex][0]) {
                     optionA.setChecked(true);
                 }
-                else if (selected == examResult.getRandomizeOption(currentIndex, 1)) {
+                else if (selected == randomizdeOptions[currentIndex][1]) {
                     optionB.setChecked(true);
                 }
-                else if (selected == examResult.getRandomizeOption(currentIndex, 2)) {
+                else if (selected == randomizdeOptions[currentIndex][2]) {
                     optionC.setChecked(true);
                 }
-                else if (selected == examResult.getRandomizeOption(currentIndex, 3)) {
+                else if (selected == randomizdeOptions[currentIndex][3]) {
                     optionD.setChecked(true);
                 }
             }
@@ -130,25 +138,38 @@ public class StartExamActivity extends AppCompatActivity {
         Question selectedQuestion = examResult.getQuestionBank().getQuestion(examResult.getShuffleQuestion(currentIndex));
         tvQuestionTitle.setText("Question " + (currentIndex + 1) + "/" + examResult.getQuestionBank().getQuestionSize());
         tvQuestionText.setText(selectedQuestion.getQuestionText());
-        optionA.setText(selectedQuestion.getOptionString(examResult.getRandomizeOption(currentIndex, 0)));
-        optionB.setText(selectedQuestion.getOptionString(examResult.getRandomizeOption(currentIndex, 1)));
-        optionC.setText(selectedQuestion.getOptionString(examResult.getRandomizeOption(currentIndex, 2)));
-        optionD.setText(selectedQuestion.getOptionString(examResult.getRandomizeOption(currentIndex, 3)));
+        optionA.setText(selectedQuestion.getOptionString(randomizdeOptions[currentIndex][0]));
+        optionB.setText(selectedQuestion.getOptionString(randomizdeOptions[currentIndex][1]));
+        optionC.setText(selectedQuestion.getOptionString(randomizdeOptions[currentIndex][2]));
+        optionD.setText(selectedQuestion.getOptionString(randomizdeOptions[currentIndex][3]));
     }
 
     private void beforeProceed() {
         int checkedId = rgOptions.getCheckedRadioButtonId();
         if (checkedId == optionA.getId()) {
-            examResult.setSelectedOption(currentIndex, examResult.getRandomizeOption(currentIndex, 0));
+            examResult.setSelectedOption(currentIndex, randomizdeOptions[currentIndex][0]);
         }
         else if (checkedId == optionB.getId()) {
-            examResult.setSelectedOption(currentIndex, examResult.getRandomizeOption(currentIndex, 1));
+            examResult.setSelectedOption(currentIndex, randomizdeOptions[currentIndex][1]);
         }
         else if (checkedId == optionC.getId()) {
-            examResult.setSelectedOption(currentIndex, examResult.getRandomizeOption(currentIndex, 2));
+            examResult.setSelectedOption(currentIndex, randomizdeOptions[currentIndex][2]);
         }
         else if (checkedId == optionD.getId()) {
-            examResult.setSelectedOption(currentIndex, examResult.getRandomizeOption(currentIndex, 3));
+            examResult.setSelectedOption(currentIndex, randomizdeOptions[currentIndex][3]);
         }
+    }
+
+    public int[] shuffleOptionsIndex() {
+        List<Integer> temp = new ArrayList<>();
+        for (int i = 0; i < 4; i++) {
+            temp.add(i);
+        }
+        Collections.shuffle(temp);
+        int[] shuffledOptions = new int[4];
+        for (int i = 0; i < 4; i++) {
+            shuffledOptions[i] = temp.get(i);
+        }
+        return shuffledOptions;
     }
 }

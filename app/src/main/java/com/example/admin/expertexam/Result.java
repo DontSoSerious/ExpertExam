@@ -3,14 +3,12 @@ package com.example.admin.expertexam;
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
 
 public class Result implements Serializable{
 
     private QuestionBank questionBank;
     private int[] selectedOption;
-    private int[][] randomizeOptions;
-    private int[] shuffleQuestion;
+    private int[] shuffledQuestion;
     private String startDateTime;
     private String endDateTime;
 
@@ -22,12 +20,10 @@ public class Result implements Serializable{
         startDateTime = new SimpleDateFormat("dd MMM yyyy hh:mm a").format(c.getTime());
         this.questionBank = questionBank;
         selectedOption = new int[questionBank.getQuestionSize()];
-        randomizeOptions = new int[questionBank.getQuestionSize()][4];
         for (int i = 0; i < questionBank.getQuestionSize(); i++) {
             selectedOption[i] = -1;
-            randomizeOptions[i] = questionBank.getQuestion(i).shuffleOptions();
         }
-        shuffleQuestion = questionBank.shuffleIndex();
+        shuffledQuestion = questionBank.shuffleIndex();
     }
 
 
@@ -55,20 +51,17 @@ public class Result implements Serializable{
         this.selectedOption = selectedOptions;
     }
 
-    public int getRandomizeOption(int questionNumber, int index) {
-        return randomizeOptions[questionNumber][index];
-    }
 
     public int getShuffleQuestion(int index) {
-        return shuffleQuestion[index];
+        return shuffledQuestion[index];
     }
 
     public int[] getShuffleQuestions() {
-        return shuffleQuestion;
+        return shuffledQuestion;
     }
 
     public void setShuffleQuestions(int[] shuffleQuestion) {
-        this.shuffleQuestion = shuffleQuestion;
+        this.shuffledQuestion = shuffleQuestion;
     }
 
     public String getStartDateTime() {
